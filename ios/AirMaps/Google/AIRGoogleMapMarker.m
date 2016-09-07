@@ -28,8 +28,6 @@ CGRect unionRect(CGRect a, CGRect b) {
 {
   if ((self = [super init])) {
     _realMarker = [[AIRGMSMarker alloc] init];
-    _realMarker.title = @"AAAAA";
-    _realMarker.snippet = @"BBBBBB";
   }
   return self;
 }
@@ -37,7 +35,7 @@ CGRect unionRect(CGRect a, CGRect b) {
 - (void)insertReactSubview:(id<RCTComponent>)subview atIndex:(NSInteger)atIndex {
   if ([subview isKindOfClass:[AIRGoogleMapCallout class]]) {
 //    self.calloutView = (AIRMapCallout *)subview;
-    printf("TODO: Callout\n");
+    printf("TODO: Custom Callout\n");
   } else {
     // Custom UIView Marker
     // NOTE: Originally I tried creating a new UIView here to encapsulate subview,
@@ -58,8 +56,13 @@ CGRect unionRect(CGRect a, CGRect b) {
   }
 }
 
-- (void)layoutSubviews {
-  printf("layout subviews\n");
+- (void)showCalloutView {
+  [_realMarker.map setSelectedMarker:_realMarker];
+}
+
+- (void)hideCalloutView {
+  [_realMarker.map setSelectedMarker:Nil];
+
 }
 
 - (void)setCoordinate:(CLLocationCoordinate2D)coordinate {
@@ -128,6 +131,23 @@ CGRect unionRect(CGRect a, CGRect b) {
                                                                    //_realMarker.groundAnchor = CGPointMake(0.75, 1);
                                                                  });
                                                                }];
+}
+
+- (void)setTitle:(NSString *)title {
+  _realMarker.title = title;
+}
+
+- (NSString *)title {
+  printf("Ttitiitit\n");
+  return _realMarker.title;
+}
+
+- (void)setSubtitle:(NSString *)subtitle {
+  _realMarker.snippet = subtitle;
+}
+
+- (NSString *)subtitle {
+  return _realMarker.snippet;
 }
 
 @end

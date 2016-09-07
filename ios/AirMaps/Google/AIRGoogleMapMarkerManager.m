@@ -10,6 +10,7 @@
 #import "AIRGoogleMapMarker.h"
 #import <MapKit/MapKit.h>
 #import "RCTConvert+MapKit.h"
+#import "RCTUIManager.h"
 
 @implementation AIRGoogleMapMarkerManager
 
@@ -30,5 +31,30 @@ RCT_EXPORT_VIEW_PROPERTY(identifier, NSString)
 RCT_EXPORT_VIEW_PROPERTY(coordinate, CLLocationCoordinate2D)
 RCT_EXPORT_VIEW_PROPERTY(onPress, RCTBubblingEventBlock)
 RCT_REMAP_VIEW_PROPERTY(image, imageSrc, NSString)
+RCT_EXPORT_VIEW_PROPERTY(title, NSString)
+RCT_REMAP_VIEW_PROPERTY(description, subtitle, NSString)
 
+RCT_EXPORT_METHOD(showCallout:(nonnull NSNumber *)reactTag)
+{
+  [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+    id view = viewRegistry[reactTag];
+    if (![view isKindOfClass:[AIRGoogleMapMarker class]]) {
+      RCTLogError(@"Invalid view returned from registry, expecting AIRMap, got: %@", view);
+    } else {
+      [(AIRGoogleMapMarker *) view showCalloutView];
+    }
+  }];
+}
+
+RCT_EXPORT_METHOD(hideCallout:(nonnull NSNumber *)reactTag)
+{
+  [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+    id view = viewRegistry[reactTag];
+    if (![view isKindOfClass:[AIRGoogleMapMarker class]]) {
+      RCTLogError(@"Invalid view returned from registry, expecting AIRMap, got: %@", view);
+    } else {
+      [(AIRGoogleMapMarker *) view hideCalloutView];
+    }
+  }];
+}
 @end

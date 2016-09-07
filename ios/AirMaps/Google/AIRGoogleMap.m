@@ -86,6 +86,9 @@ id cameraPositionAsJSON(GMSCameraPosition *position) {
 
   if (airMarker.onPress) airMarker.onPress(event);
   if (self.onMarkerPress) self.onMarkerPress(event);
+
+  // TODO: not sure why this is necessary
+  [self setSelectedMarker:marker];
   return NO;
 }
 

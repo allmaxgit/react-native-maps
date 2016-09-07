@@ -10,7 +10,6 @@ let {
   Image,
 } = ReactNative;
 
-let MapView = require('react-native-maps');
 const PriceMarker = require('./PriceMarker');
 let CustomCallout = require('./CustomCallout');
 
@@ -64,6 +63,7 @@ const Callouts = React.createClass({
   },
 
   render() {
+    const { MapView } = this.props;
     const { region, markers } = this.state;
     return (
       <View style={styles.container}>
