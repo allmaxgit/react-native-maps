@@ -22,12 +22,13 @@ RCT_EXPORT_MODULE()
 //  // setting this to NO allows the parent MapView to continue receiving marker selection events
 //  tapGestureRecognizer.cancelsTouchesInView = NO;
 //  [marker addGestureRecognizer:tapGestureRecognizer];
-//  marker.bridge = self.bridge;
+  marker.bridge = self.bridge;
   return marker;
 }
 
 RCT_EXPORT_VIEW_PROPERTY(identifier, NSString)
 RCT_EXPORT_VIEW_PROPERTY(coordinate, CLLocationCoordinate2D)
 RCT_EXPORT_VIEW_PROPERTY(onPress, RCTBubblingEventBlock)
+RCT_REMAP_VIEW_PROPERTY(image, imageSrc, NSString)
 
 @end
