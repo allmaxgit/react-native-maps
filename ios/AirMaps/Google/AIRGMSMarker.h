@@ -8,8 +8,11 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "UIView+React.h"
 
+@class AIRGoogleMapMarker;
+
 @interface AIRGMSMarker : GMSMarker
 @property (nonatomic, strong) NSString *identifier;
+@property (nonatomic, weak) AIRGoogleMapMarker *fakeMarker;
 @property (nonatomic, copy) RCTBubblingEventBlock onPress;
 @end
 

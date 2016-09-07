@@ -97,6 +97,13 @@ const App = React.createClass({
   },
 
   render() {
+    if (this.state.useGoogleMaps) {
+      return this.renderExamples([
+        [EventListener, 'Events'],
+        [Callouts, 'Custom Callouts'],
+      ]);
+    }
+
     return this.renderExamples([
       [DisplayLatLng, 'Tracking Position'],
       [ViewsAsMarkers, 'Arbitrary Views as Markers'],

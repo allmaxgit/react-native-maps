@@ -22,4 +22,6 @@ RCT_EXPORT_MODULE()
   return callout;
 }
 
+RCT_EXPORT_VIEW_PROPERTY(tooltip, BOOL)
+
 @end

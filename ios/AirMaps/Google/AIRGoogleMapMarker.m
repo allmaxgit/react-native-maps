@@ -28,14 +28,14 @@ CGRect unionRect(CGRect a, CGRect b) {
 {
   if ((self = [super init])) {
     _realMarker = [[AIRGMSMarker alloc] init];
+    _realMarker.fakeMarker = self;
   }
   return self;
 }
 
 - (void)insertReactSubview:(id<RCTComponent>)subview atIndex:(NSInteger)atIndex {
   if ([subview isKindOfClass:[AIRGoogleMapCallout class]]) {
-//    self.calloutView = (AIRMapCallout *)subview;
-    printf("TODO: Custom Callout\n");
+    self.calloutView = (AIRGoogleMapCallout *)subview;
   } else {
     // Custom UIView Marker
     // NOTE: Originally I tried creating a new UIView here to encapsulate subview,
@@ -62,7 +62,21 @@ CGRect unionRect(CGRect a, CGRect b) {
 
 - (void)hideCalloutView {
   [_realMarker.map setSelectedMarker:Nil];
+}
 
+- (UIView *)markerInfoContents {
+  if (self.calloutView && !self.calloutView.tooltip) {
+    return self.calloutView;
+  }
+  return nil;
+}
+
+- (UIView *)markerInfoWindow {
+  if (self.calloutView && self.calloutView.tooltip) {
+    printf("TODO: marker tooltip option not working for some reason");
+    return self.calloutView;
+  }
+  return nil;
 }
 
 - (void)setCoordinate:(CLLocationCoordinate2D)coordinate {

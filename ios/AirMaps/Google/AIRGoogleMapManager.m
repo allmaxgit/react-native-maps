@@ -22,6 +22,7 @@
 #import "AIRMapPolygon.h"
 #import "AIRMapCircle.h"
 #import "SMCalloutView.h"
+#import "AIRGoogleMapMarker.h"
 
 #import <MapKit/MapKit.h>
 
@@ -61,6 +62,15 @@ RCT_EXPORT_VIEW_PROPERTY(onRegionChangeComplete, RCTDirectEventBlock)
 - (void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position {
   AIRGoogleMap *googleMapView = (AIRGoogleMap *)mapView;
   [googleMapView idleAtCameraPosition:position];
+}
+
+- (UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
+  AIRGMSMarker *aMarker = (AIRGMSMarker *)marker;
+  return [aMarker.fakeMarker markerInfoWindow];}
+
+- (UIView *)mapView:(GMSMapView *)mapView markerInfoContents:(GMSMarker *)marker {
+  AIRGMSMarker *aMarker = (AIRGMSMarker *)marker;
+  return [aMarker.fakeMarker markerInfoContents];
 }
 
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AIRGoogleMapCallout : UIView
-
+@property (nonatomic, assign) BOOL tooltip;
 @end
