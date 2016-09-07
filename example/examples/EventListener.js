@@ -91,6 +91,7 @@ const DisplayLatLng = React.createClass({
           onCalloutPress={this.recordEvent('Map::onCalloutPress')}
         >
           <MapView.Marker
+            image={require('./assets/flag-blue.png')}
             coordinate={this.state.region}
             onPress={this.recordEvent('Marker::onPress')}
             onSelect={this.recordEvent('Marker::onSelect')}

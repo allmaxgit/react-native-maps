@@ -12,6 +12,14 @@
 #import "RCTImageLoader.h"
 #import "RCTUtils.h"
 
+CGRect unionRect(CGRect a, CGRect b) {
+  return CGRectMake(
+                    MIN(a.origin.x, b.origin.x),
+                    MIN(a.origin.y, b.origin.y),
+                    MAX(a.size.width, b.size.width),
+                    MAX(a.size.height, b.size.height));
+}
+
 @implementation AIRGoogleMapMarker {
   RCTImageLoaderCancellationBlock _reloadImageCancellationBlock;
 }
@@ -34,12 +42,19 @@
     // Custom UIView Marker
     // NOTE: Originally I tried creating a new UIView here to encapsulate subview,
     //       but it would not sizeToFit properly. Not sure why.
-    UIView *v = (UIView*)subview;
     [super insertReactSubview:subview atIndex:atIndex];
     [self sizeToFit];
 
     // TODO: how to handle this circular reference properly?
     _realMarker.iconView = self;
+  }
+}
+
+- (void)removeReactSubview:(id<RCTComponent>)subview {
+  if ([subview isKindOfClass:[AIRGoogleMapCallout class]]) {
+    printf("TODO\n");
+  } else {
+    [super removeReactSubview:subview];
   }
 }
 
@@ -97,13 +112,17 @@
                                                                    float density = 2;
                                                                    float w = image.size.width/density;
                                                                    float h = image.size.height/density;
-                                                                   [imageView setFrame:CGRectMake(0, 0, w, h)];
+                                                                   CGRect bounds = CGRectMake(0, 0, w, h);
+                                                                   [imageView setFrame:bounds];
 
-//                                                                   UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-//                                                                   v.backgroundColor = [UIColor redColor];
-//                                                                   _realMarker.iconView = v;
-                                                                   _realMarker.iconView = imageView;
-//                                                                   _realMarker.iconView.bounds = CGRectMake(0, 0, image.size.width/2, image.size.height/2);
+                                                                   // NOTE: sizeToFit doesn't work instead. Not sure why.
+                                                                   // TODO: Doing it this way is not ideal because it causes things to reshuffle
+                                                                   //       when the image loads *if* the image is larger than the UIView.
+                                                                   //       Shouldn't required images have size info automatically via RN?
+                                                                   [self setFrame:unionRect(bounds, self.bounds)];
+
+                                                                   [super insertSubview:imageView atIndex:0];
+                                                                   _realMarker.iconView = self;
 
                                                                    // TODO: This could be a prop
                                                                    //_realMarker.groundAnchor = CGPointMake(0.75, 1);
