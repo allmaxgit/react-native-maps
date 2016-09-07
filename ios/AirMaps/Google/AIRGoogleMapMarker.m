@@ -117,7 +117,7 @@ CGRect unionRect(CGRect a, CGRect b) {
 
                                                                    // NOTE: sizeToFit doesn't work instead. Not sure why.
                                                                    // TODO: Doing it this way is not ideal because it causes things to reshuffle
-                                                                   //       when the image loads *if* the image is larger than the UIView.
+                                                                   //       when the image loads IF the image is larger than the UIView.
                                                                    //       Shouldn't required images have size info automatically via RN?
                                                                    [self setFrame:unionRect(bounds, self.bounds)];
 
