@@ -78,6 +78,7 @@ const CGFloat AIRMapZoomBoundBuffer = 0.01;
         // be identical to the built-in callout view (which has a private API)
         self.calloutView = [SMCalloutView platformCalloutView];
         self.calloutView.delegate = self;
+        
     }
     return self;
 }
@@ -214,10 +215,35 @@ const CGFloat AIRMapZoomBoundBuffer = 0.01;
     if (!region.span.longitudeDelta) {
         region.span.longitudeDelta = self.region.span.longitudeDelta;
     }
+    
+    
+    
+    MKDirectionsRequest* request = [[MKDirectionsRequest alloc] init];
+    
+    MKMapItem* source = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(40.759011, -73.984472) addressDictionary:nil]];
+    MKMapItem* destination = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(40.748441, -73.985564) addressDictionary:nil]];
+    
+    [request setSource: source];
+    [request setDestination: destination];
+    [request setTransportType: MKDirectionsTransportTypeAny];
+    
+    MKDirections* directions = [[MKDirections alloc] initWithRequest:request];
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse * _Nullable response, NSError * _Nullable error) {
+        if (response) {
+            
+            MKPolyline* direction = [[[response routes] objectAtIndex:0] polyline];
+            
+            
+            [super addOverlay:direction level:MKOverlayLevelAboveLabels];
+        } else {
+            RCTLog([error description]);
+        }
+    }];
 
     // Animate/move to new position
     [super setRegion:region animated:animated];
 }
+
 
 - (void)setInitialRegion:(MKCoordinateRegion)initialRegion {
     if (!_initialRegionSet) {

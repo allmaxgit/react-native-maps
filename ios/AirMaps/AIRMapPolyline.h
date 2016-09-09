@@ -38,5 +38,7 @@
 @property(nonatomic, readonly) MKMapRect boundingMapRect;
 - (BOOL)intersectsMapRect:(MKMapRect)mapRect;
 - (BOOL)canReplaceMapContent;
+- (void)update;
+- (void)setPolylineAndUpdate:(MKPolyline *)polyline;
 
 @end

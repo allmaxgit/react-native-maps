@@ -63,6 +63,12 @@
     [self update];
 }
 
+-(void)setPolylineAndUpdate:(MKPolyline *)polyline {
+    self.polyline = polyline;
+    self.renderer = [[MKPolylineRenderer alloc] initWithPolyline:self.polyline];
+    [self update];
+}
+
 - (void) update
 {
     if (!_renderer) return;

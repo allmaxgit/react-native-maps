@@ -1,30 +1,51 @@
 {
-  "name": "react-native-maps",
-  "description": "React Native Mapview component for iOS + Android",
-  "main": "index.js",
-  "author": "Leland Richardson <leland.m.richardson@gmail.com>",
-  "version": "0.8.2",
-  "scripts": {
-    "start": "react-native start",
-    "lint": "eslint ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lelandrichardson/react-native-maps"
-  },
-  "keywords": [
-    "react",
-    "react-native",
-    "react-component",
-    "map",
-    "mapview",
-    "google-maps",
-    "mapkit"
+  "_args": [
+    [
+      "react-native-maps@^0.8.0",
+      "/Users/tarasparhomenko/Desktop/Projects/scene"
+    ]
   ],
-  "peerDependencies": {
-    "react": ">=15.3.0",
-    "react-native": ">=0.32.0"
+  "_from": "react-native-maps@>=0.8.0 <0.9.0",
+  "_id": "react-native-maps@0.8.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-native-maps",
+  "_nodeVersion": "6.3.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/react-native-maps-0.8.2.tgz_1473371318144_0.8314644428901374"
   },
+  "_npmUser": {
+    "email": "ocelot@gmail.com",
+    "name": "spikebrehm"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "react-native-maps",
+    "raw": "react-native-maps@^0.8.0",
+    "rawSpec": "^0.8.0",
+    "scope": null,
+    "spec": ">=0.8.0 <0.9.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-maps/-/react-native-maps-0.8.2.tgz",
+  "_shasum": "38a8d21dd032445b8cc8e4c729fb48c81131aef7",
+  "_shrinkwrap": null,
+  "_spec": "react-native-maps@^0.8.0",
+  "_where": "/Users/tarasparhomenko/Desktop/Projects/scene",
+  "author": {
+    "email": "leland.m.richardson@gmail.com",
+    "name": "Leland Richardson"
+  },
+  "bugs": {
+    "url": "https://github.com/lelandrichardson/react-native-maps/issues"
+  },
+  "dependencies": {},
+  "description": "React Native Mapview component for iOS + Android",
   "devDependencies": {
     "babel-eslint": "^6.1.2",
     "eslint": "^3.3.1",
@@ -34,9 +55,68 @@
     "eslint-plugin-prefer-object-spread": "^1.1.0",
     "eslint-plugin-react": "^6.1.2"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "38a8d21dd032445b8cc8e4c729fb48c81131aef7",
+    "tarball": "https://registry.npmjs.org/react-native-maps/-/react-native-maps-0.8.2.tgz"
+  },
+  "gitHead": "c83b8b5a9eabb01e5f6e451ffdd939497acc09c4",
+  "homepage": "https://github.com/lelandrichardson/react-native-maps#readme",
+  "keywords": [
+    "react",
+    "react-native",
+    "react-component",
+    "map",
+    "mapview",
+    "google-maps",
+    "mapkit"
+  ],
+  "main": "index.js",
+  "maintainers": [
+    {
+      "email": "jordan.harband+npm@airbnb.com",
+      "name": "airbnb"
+    },
+    {
+      "email": "casheghian@gmail.com",
+      "name": "cdro"
+    },
+    {
+      "email": "g@gilbox.me",
+      "name": "gilbox"
+    },
+    {
+      "email": "leland.m.richardson@gmail.com",
+      "name": "intelligibabble"
+    },
+    {
+      "email": "jrichardlai@gmail.com",
+      "name": "jrichardlai"
+    },
+    {
+      "email": "ocelot@gmail.com",
+      "name": "spikebrehm"
+    }
+  ],
+  "name": "react-native-maps",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "react": ">=15.3.0",
+    "react-native": ">=0.32.0"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lelandrichardson/react-native-maps.git"
+  },
   "rnpm": {
     "android": {
       "sourceDir": "./android"
     }
-  }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "start": "react-native start"
+  },
+  "version": "0.8.2"
 }
