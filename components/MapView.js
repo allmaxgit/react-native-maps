@@ -14,6 +14,7 @@ import MapPolyline from './MapPolyline';
 import MapPolygon from './MapPolygon';
 import MapCircle from './MapCircle';
 import MapCallout from './MapCallout';
+import MapRoutePolyline from './MapRoutePolyline'
 
 const viewConfig = {
   uiViewClassName: 'AIRMap',
@@ -456,7 +457,7 @@ class MapView extends React.Component {
         onLayout: this._onLayout,
       };
     }
-
+    console.warn(AIRMap);
     return (
       <AIRMap
         ref={ref => { this.map = ref; }}
@@ -482,7 +483,7 @@ MapView.Polyline = MapPolyline;
 MapView.Polygon = MapPolygon;
 MapView.Circle = MapCircle;
 MapView.Callout = MapCallout;
-
+MapView.RoutePolyline = MapRoutePolyline
 MapView.Animated = Animated.createAnimatedComponent(MapView);
 
 module.exports = MapView;
