@@ -77,6 +77,8 @@ public class AirMapView extends MapView implements GoogleMap.InfoWindowAdapter,
     private final List<AirMapFeature> features = new ArrayList<>();
     private final Map<Marker, AirMapMarker> markerMap = new HashMap<>();
     private final Map<Polyline, AirMapPolyline> polylineMap = new HashMap<>();
+    private final Map<Polyline, AirMapRoutePolyline> routePolylineMap = new HashMap<>();
+
     private final Map<Polygon, AirMapPolygon> polygonMap = new HashMap<>();
     private final Map<Circle, AirMapCircle> circleMap = new HashMap<>();
 
@@ -152,6 +154,8 @@ public class AirMapView extends MapView implements GoogleMap.InfoWindowAdapter,
         this.map = map;
         this.map.setInfoWindowAdapter(this);
         this.map.setOnMarkerDragListener(this);
+
+
 
         manager.pushEvent(this, "onMapReady", new WritableNativeMap());
 
@@ -418,6 +422,12 @@ public class AirMapView extends MapView implements GoogleMap.InfoWindowAdapter,
             features.add(index, circleView);
             Circle circle = (Circle) circleView.getFeature();
             circleMap.put(circle, circleView);
+        } else if (child instanceof AirMapRoutePolyline) {
+            AirMapRoutePolyline routePolylineView = (AirMapRoutePolyline) child;
+            routePolylineView.addToMap(map);
+            features.add(index, routePolylineView);
+            Polyline polyline = (Polyline) routePolylineView.getFeature();
+            routePolylineMap.put(polyline, routePolylineView);
         } else {
             // TODO(lmr): throw? User shouldn't be adding non-feature children.
         }
@@ -443,7 +453,10 @@ public class AirMapView extends MapView implements GoogleMap.InfoWindowAdapter,
             polygonMap.remove(feature.getFeature());
         } else if (feature instanceof AirMapCircle) {
             circleMap.remove(feature.getFeature());
+        } else if (feature instanceof AirMapRoutePolyline) {
+            routePolylineMap.remove(feature.getFeature());
         }
+
         feature.removeFromMap(map);
     }
 
