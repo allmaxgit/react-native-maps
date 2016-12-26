@@ -215,6 +215,7 @@
                                                                          clipped:YES
                                                                       resizeMode:RCTResizeModeCenter
                                                                    progressBlock:nil
+                                                                partialLoadBlock:nil
                                                                  completionBlock:^(NSError *error, UIImage *image) {
                                                                      if (error) {
                                                                          // TODO(lmr): do something with the error?
@@ -223,8 +224,7 @@
                                                                      dispatch_async(dispatch_get_main_queue(), ^{
                                                                          self.image = image;
                                                                      });
-                                                                 }];
-}
+                                                                 }];}
 
 - (void)setPinColor:(UIColor *)pinColor
 {
